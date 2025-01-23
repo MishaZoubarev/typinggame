@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { faker } from "@faker-js/faker"
 import RestartButton from "./components/RestartButton";
 import Results from "./components/Results";
+import UserTypings from "./components/UserTypings";
 
 const words = Array.from({ length: 10 }, () => faker.word.sample());
 
@@ -10,7 +11,10 @@ const App = () => {
   return(
     <>
       <CountdownTimer timeLeft={30} />
-      <GeneratedWords words={words.join(" ")} />;
+      <WordsContainer>
+        <GeneratedWords words={words.join(" ")} />
+        <UserTypings className="absolute inset-0" userInput={words.join(" ")} />
+      </WordsContainer>
       <RestartButton
         className={"mx-auto mt-10 text-slate-500"} 
         onRestart={() => null}
@@ -25,8 +29,14 @@ const App = () => {
   );
 };
 
+const WordsContainer = ({ children}: {children: React.ReactNode } ) => {
+  return(
+    <div className="relative text-3xl max-w-xl leading-relaxed break-all mt-3">{children}</div>
+  );
+};
+
 const GeneratedWords = ({words}: {words: string}) => {
-    return <div className="text-4xl text-center text-slate-500">{words}</div>
+    return <div className=" text-slate-500">{words}</div>
 };
 
 const CountdownTimer = ({timeLeft}: {timeLeft: number}) => {
