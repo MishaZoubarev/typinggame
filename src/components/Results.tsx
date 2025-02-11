@@ -1,13 +1,16 @@
 import { motion } from "framer-motion";
+import { State } from "../hooks/useEngine";
 import { formatPercentage } from "../utils/helpers";
 
 
 const Results = ({
+    state,
     errors,
     accuracyPercentage,
     total,
     className,
 }: {
+    state: State;
     errors: number;
     accuracyPercentage: number;
     total: number;
@@ -17,7 +20,9 @@ const Results = ({
     const animate = { opacity : 1 };
     const duration = { duration: 0.3 };
 
-    
+    if(state !== 'finish'){
+      return null;
+    }
     
     
     
