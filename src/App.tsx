@@ -3,17 +3,20 @@ import { faker } from "@faker-js/faker"
 import RestartButton from "./components/RestartButton";
 import Results from "./components/Results";
 import UserTypings from "./components/UserTypings";
+import useEngine from "./hooks/useEngine";
 
-const words = Array.from({ length: 10 }, () => faker.word.sample());
+//const words = Array.from({ length: 10 }, () => faker.word.sample());
 
 
 const App = () => {
+  const { state, words } = useEngine();
+
   return(
     <>
       <CountdownTimer timeLeft={30} />
       <WordsContainer>
-        <GeneratedWords words={words.join(" ")} />
-        <UserTypings className="absolute inset-0" userInput={words.join(" ")} />
+        <GeneratedWords words={words} />
+        <UserTypings className="absolute inset-0" userInput={"test"} />
       </WordsContainer>
       <RestartButton
         className={"mx-auto mt-10 text-slate-500"} 
