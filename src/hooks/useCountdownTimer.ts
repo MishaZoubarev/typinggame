@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useEffect, useState } from "react";
 
 const useCountdownTimer = (seconds: number) => {
     const [timeLeft, setTimeLeft] = useState(seconds);
@@ -20,6 +20,13 @@ const useCountdownTimer = (seconds: number) => {
 
         setTimeLeft(seconds);
     }, [seconds]);
+
+    useEffect(() => {
+        if(!timeLeft && intervalRef.current) {
+            console.log("Clearing Timer...");
+            clearInterval(intervalRef.current)
+        }
+    }, [timeLeft, intervalRef]);
 
     return { timeLeft, startCountdown, resetCountdown };
 };

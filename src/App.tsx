@@ -9,11 +9,11 @@ import useEngine from "./hooks/useEngine";
 
 
 const App = () => {
-  const { state, words } = useEngine();
+  const { state, words, timeLeft } = useEngine();
 
   return(
     <>
-      <CountdownTimer timeLeft={30} />
+      <CountdownTimer timeLeft={timeLeft} />
       <WordsContainer>
         <GeneratedWords words={words} />
         <UserTypings className="absolute inset-0" userInput={"test"} />
