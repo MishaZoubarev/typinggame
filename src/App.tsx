@@ -7,7 +7,7 @@ import useEngine from "./hooks/useEngine";
 import { calculateAccuracyPercentage } from "./utils/helpers";
 
 //const words = Array.from({ length: 10 }, () => faker.word.sample());
-
+//GITHUB TEST HI
 
 const App = () => {
   const { state, words, timeLeft, typed, errors, restart, totalTyped } = useEngine();
@@ -24,6 +24,7 @@ const App = () => {
         onRestart={restart}
       />
       <Results
+      state={state}
         className="mt-10"
         errors = {errors}
         accuracyPercentage={calculateAccuracyPercentage(errors, totalTyped)}
